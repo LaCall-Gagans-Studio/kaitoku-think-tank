@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TRANSITIONS } from "@/lib/animations";
 import { Menu, X } from "lucide-react";
@@ -14,21 +14,31 @@ const navLinks = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  // menuOpenの最新値をrefで保持（クロージャ問題の回避）
+  const menuOpenRef = useRef(menuOpen);
+  menuOpenRef.current = menuOpen;
+
+  // ✅ FIX 1: useCallbackでハンドラをメモ化し、依存配列から menuOpen を除去
+  // ✅ FIX 2: { passive: true } オプションでモバイルのスクロールブロッキングを解除
+  const handleScroll = useCallback(() => {
+    setScrolled(window.scrollY > 20);
+    // refを使って最新のmenuOpen状態を参照（stale closureを防ぐ）
+    if (menuOpenRef.current) {
+      setMenuOpen(false);
+    }
+  }, []); // 依存配列を空にして、リスナーの二重登録を完全に防止
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-      // スクロールしたらメニューを閉じる
-      if (menuOpen) setMenuOpen(false);
-    };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [menuOpen]);
+  }, [handleScroll]); // handleScrollはメモ化されているので再登録されない
 
   // メニューが開いているときにbodyスクロールをロック
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
 
   return (
@@ -45,7 +55,10 @@ export function Header() {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* ロゴ */}
-          <a href="#" className="font-semibold tracking-widest text-sm text-text-primary flex items-center gap-2 shrink-0">
+          <a
+            href="#"
+            className="font-semibold tracking-widest text-sm text-text-primary flex items-center gap-2 shrink-0"
+          >
             <span className="w-2 h-2 rounded-full bg-primary inline-block" />
             KAITOKU
           </a>
@@ -122,7 +135,11 @@ export function Header() {
                   onClick={() => setMenuOpen(false)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.08, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{
+                    delay: i * 0.08,
+                    duration: 0.4,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
                   className="text-2xl font-light tracking-[0.2em] text-text-primary hover:text-primary transition-colors"
                 >
                   {link.label}

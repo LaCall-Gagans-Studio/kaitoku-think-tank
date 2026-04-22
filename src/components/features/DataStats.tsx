@@ -1,29 +1,42 @@
 "use client";
 
-import { motion, useInView, animate } from "framer-motion";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { TRANSITIONS, EASING } from "@/lib/animations";
 
+/**
+ * ✅ FIX: textContent の直接書き換えを廃止。
+ *
+ * 旧実装の問題:
+ *   onUpdate() で nodeRef.current.textContent = value を毎フレーム実行
+ *   → DOMの textContent 変更は Style Recalc を発生させる
+ *
+ * 新実装:
+ *   useMotionValue + useTransform でカウント値を管理し、
+ *   Framer Motion の内部で変更を処理させる。
+ *   motion.span の children として渡すことで、Framer Motion が
+ *   最適な方法（WAAPI / compositor経由）でDOMを更新する。
+ */
 function Counter({ from, to }: { from: number; to: number }) {
   const nodeRef = useRef<HTMLSpanElement>(null);
   const inView = useInView(nodeRef, { once: true, margin: "-100px" });
+  const motionValue = useMotionValue(from);
 
   useEffect(() => {
-    if (inView) {
-      const controls = animate(from, to, {
-        duration: 2.5,
-        ease: EASING.apple,
-        onUpdate(value) {
-          if (nodeRef.current) {
-            nodeRef.current.textContent = Math.round(value).toString();
-          }
-        },
-      });
-      return () => controls.stop();
-    }
-  }, [from, to, inView]);
+    if (!inView) return;
 
-  return <span ref={nodeRef}>{from}</span>;
+    const controls = animate(motionValue, to, {
+      duration: 2.5,
+      ease: EASING.apple,
+    });
+
+    return () => controls.stop();
+  }, [inView, motionValue, to]);
+
+  // useTransform で整数に丸める（フレームごとの再計算をFramer Motionに委ねる）
+  const rounded = useTransform(motionValue, (v) => Math.round(v));
+
+  return <motion.span ref={nodeRef}>{rounded}</motion.span>;
 }
 
 export function DataStats() {
@@ -56,7 +69,7 @@ export function DataStats() {
             <p className="text-sm tracking-widest text-primary font-medium">対面参加</p>
           </motion.div>
 
-          {/* Divider for mobile / desktop */}
+          {/* Divider */}
           <div className="w-16 h-[1px] md:w-[1px] md:h-24 bg-primary/20" />
 
           <motion.div
@@ -81,9 +94,9 @@ export function DataStats() {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ ...TRANSITIONS.base, delay: 0.6 }}
         >
-          <a 
-            href="https://www.kaitoku.org/suzuden0531/" 
-            target="_blank" 
+          <a
+            href="https://www.kaitoku.org/suzuden0531/"
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-4 border border-primary/40 rounded-full text-primary hover:bg-primary/5 transition-all duration-300 tracking-widest text-sm hover:-translate-y-1 shadow-sm"
           >
