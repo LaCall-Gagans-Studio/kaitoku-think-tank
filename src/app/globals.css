@@ -6,12 +6,38 @@
   --color-primary: #7099C7;
   --color-accent: #F7B454;
   --color-text-primary: #0F172A;
+  --font-sans: var(--font-noto-sans-jp), "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+
+html {
+  font-size: 18px;
 }
 
 body {
   background-color: var(--color-base-bg);
   color: var(--color-text-primary);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
   overflow-x: hidden;
-  /* Next Gen Autonomy requires a clean slate without default dark mode */
+  /* word-break: keep-all prevents unnatural mid-word line breaks in Japanese */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  line-height: 1.75;
+}
+
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  opacity: 0.3;
+  border-radius: 2px;
 }

@@ -1,44 +1,148 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { EASING, TRANSITIONS } from "@/lib/animations";
+import { motion, AnimatePresence } from "framer-motion";
+import { TRANSITIONS } from "@/lib/animations";
+import { Menu, X } from "lucide-react";
+
+const navLinks = [
+  { href: "#manifesto", label: "MANIFESTO" },
+  { href: "#speakers", label: "SPEAKERS" },
+  { href: "#timetable", label: "TIME TABLE" },
+];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+      // スクロールしたらメニューを閉じる
+      if (menuOpen) setMenuOpen(false);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [menuOpen]);
+
+  // メニューが開いているときにbodyスクロールをロック
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={TRANSITIONS.base}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/50 backdrop-blur-2xl border-b border-white/20 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_30px_rgba(0,0,0,0.05)]"
-          : "bg-transparent border-b border-transparent py-6"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <div className="font-semibold tracking-widest text-sm text-text-primary flex items-center gap-2">
-          {/* シンプルなロゴ的な要素 */}
-          <span className="w-2 h-2 rounded-full bg-primary inline-block"></span>
-          KAITOKU
+    <>
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={TRANSITIONS.base}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "bg-white/60 backdrop-blur-2xl border-b border-white/20 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_30px_rgba(0,0,0,0.05)]"
+            : "bg-transparent border-b border-transparent py-5"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          {/* ロゴ */}
+          <a href="#" className="font-semibold tracking-widest text-sm text-text-primary flex items-center gap-2 shrink-0">
+            <span className="w-2 h-2 rounded-full bg-primary inline-block" />
+            KAITOKU
+          </a>
+
+          {/* PC ナビゲーション */}
+          <nav className="hidden md:flex items-center gap-10 text-xs font-medium tracking-[0.15em] text-text-primary/70">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[1px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* PC CTA ボタン */}
+          <a
+            href="#cta"
+            className="hidden md:inline-flex items-center justify-center px-5 py-2.5 text-xs font-medium tracking-widest text-primary border border-primary/30 hover:bg-primary/5 hover:border-primary/50 transition-all duration-300 rounded-full"
+          >
+            プレエントリー
+          </a>
+
+          {/* スマホ ハンバーガーボタン */}
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? "メニューを閉じる" : "メニューを開く"}
+            className="md:hidden relative z-[60] p-2 text-text-primary"
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              {menuOpen ? (
+                <motion.span
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X size={22} />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="open"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu size={22} />
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
         </div>
-        
-        <nav className="hidden md:flex items-center gap-10 text-xs font-medium tracking-[0.15em] text-text-primary/70">
-          <a href="#manifesto" className="hover:text-primary transition-colors">MANIFESTO</a>
-          <a href="#speakers" className="hover:text-primary transition-colors">SPEAKERS</a>
-          <a href="#timetable" className="hover:text-primary transition-colors">TIMETABLE</a>
-        </nav>
-      </div>
-    </motion.header>
+      </motion.header>
+
+      {/* スマホ フルスクリーンメニュー */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-12 md:hidden"
+          >
+            <nav className="flex flex-col items-center gap-8">
+              {navLinks.map((link, i) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.08, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-2xl font-light tracking-[0.2em] text-text-primary hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </nav>
+
+            <motion.a
+              href="#cta"
+              onClick={() => setMenuOpen(false)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="px-10 py-4 text-sm font-medium tracking-widest text-primary border border-primary/30 rounded-full hover:bg-primary/5 transition-all duration-300"
+            >
+              プレエントリーはこちら
+            </motion.a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
