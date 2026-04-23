@@ -9,7 +9,7 @@ interface CornerButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
 export function CornerButton({ children, className = "", ...props }: CornerButtonProps) {
   return (
     <button
-      className={`relative group px-10 py-5 overflow-hidden ${className}`}
+      className={`relative group px-6 py-4 sm:px-10 sm:py-5 overflow-hidden ${className}`}
       {...props}
     >
       {/* 
@@ -28,7 +28,7 @@ export function CornerButton({ children, className = "", ...props }: CornerButto
       <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500" />
 
       {/* テキストコンテンツ */}
-      <span className="relative z-10 font-medium tracking-[0.2em] text-text-primary text-lg transition-transform duration-500 inline-block group-hover:scale-105">
+      <span className="relative z-10 font-medium tracking-[0.1em] sm:tracking-[0.2em] text-text-primary text-base sm:text-lg transition-transform duration-500 inline-block group-hover:scale-105">
         {children}
       </span>
     </button>

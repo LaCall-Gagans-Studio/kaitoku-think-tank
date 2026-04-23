@@ -16,7 +16,11 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   // menuOpenの最新値をrefで保持（クロージャ問題の回避）
   const menuOpenRef = useRef(menuOpen);
-  menuOpenRef.current = menuOpen;
+
+  // refの更新はエフェクト内で行う（レンダー中のref書き換えはReact 19で禁止）
+  useEffect(() => {
+    menuOpenRef.current = menuOpen;
+  });
 
   // ✅ FIX 1: useCallbackでハンドラをメモ化し、依存配列から menuOpen を除去
   // ✅ FIX 2: { passive: true } オプションでモバイルのスクロールブロッキングを解除

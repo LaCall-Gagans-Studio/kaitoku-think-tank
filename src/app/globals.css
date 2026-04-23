@@ -18,8 +18,7 @@ body {
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   overflow-x: hidden;
-  /* word-break: keep-all prevents unnatural mid-word line breaks in Japanese */
-  word-break: keep-all;
+  /* overflow-wrap ensures long words (URLs etc.) wrap rather than overflow */
   overflow-wrap: break-word;
   line-height: 1.75;
 }

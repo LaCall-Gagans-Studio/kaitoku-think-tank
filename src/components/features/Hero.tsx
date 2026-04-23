@@ -24,16 +24,31 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 sm:px-8 w-full overflow-hidden">
+      <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden min-h-screen w-full opacity-30">
+        <img
+          src="/hero_bg.webp"
+          alt="hero-background"
+          className="h-full w-full"
+        />
+      </div>
 
       {/* 背景の幾何学オーブ — z-0（テキストより必ず後面）*/}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <motion.div
-          animate={{ x: ["-10vw", "15vw", "-5vw", "-10vw"], y: ["10vh", "-10vh", "5vh", "10vh"], rotate: [0, 360] }}
+          animate={{
+            x: ["-10vw", "15vw", "-5vw", "-10vw"],
+            y: ["10vh", "-10vh", "5vh", "10vh"],
+            rotate: [0, 360],
+          }}
           transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
           className="absolute top-1/4 left-1/4 w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] border border-primary/15 rounded-full"
         />
         <motion.div
-          animate={{ x: ["10vw", "-15vw", "5vw", "10vw"], y: ["-10vh", "15vh", "-5vh", "-10vh"], rotate: [360, 0] }}
+          animate={{
+            x: ["10vw", "-15vw", "5vw", "10vw"],
+            y: ["-10vh", "15vh", "-5vh", "-10vh"],
+            rotate: [360, 0],
+          }}
           transition={{ duration: 55, repeat: Infinity, ease: "linear" }}
           className="absolute bottom-1/4 right-1/4 w-[70vw] h-[70vw] max-w-[700px] max-h-[700px] border border-accent/15 rounded-full"
         />
@@ -64,14 +79,16 @@ export function Hero() {
             第2回
           </p>
           <h1 className="text-[clamp(2.25rem,8vw,7rem)] font-light leading-[1.1] tracking-[0.08em] sm:tracking-[0.12em] text-text-primary">
-            次世代自治<wbr />共創会議
+            次世代自治
+            <wbr />
+            共創会議
           </h1>
         </motion.div>
 
         {/* サブコピー */}
         <motion.p
           variants={itemVariants}
-          className="text-[clamp(0.875rem,1.8vw,1.125rem)] font-light text-text-primary/55 tracking-wider leading-relaxed mb-14 max-w-xl"
+          className="text-[clamp(0.875rem,1.8vw,1.125rem)] font-medium text-text-primary/75 tracking-wider leading-relaxed mb-14 max-w-xl"
         >
           補助金に依らない、真の地方創生へ。
           <br />
@@ -91,11 +108,21 @@ export function Hero() {
         transition={{ delay: 2.5, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20"
       >
-        <span className="text-[10px] tracking-[0.35em] text-text-primary/35 font-medium uppercase">Scroll</span>
+        <span className="text-[10px] tracking-[0.35em] text-text-primary/35 font-medium uppercase">
+          Scroll
+        </span>
         <div className="w-[1px] h-14 bg-text-primary/10 relative overflow-hidden">
           <motion.div
-            animate={{ scaleY: [0, 1, 0], transformOrigin: ["top", "top", "bottom"] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", times: [0, 0.5, 1] }}
+            animate={{
+              scaleY: [0, 1, 0],
+              transformOrigin: ["top", "top", "bottom"],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              times: [0, 0.5, 1],
+            }}
             className="absolute inset-0 bg-primary origin-top"
           />
         </div>
