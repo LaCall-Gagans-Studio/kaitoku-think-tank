@@ -21,7 +21,7 @@ export function Manifesto() {
     <section
       ref={containerRef}
       id="manifesto"
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 sm:px-8 py-32 sm:py-48 md:py-56 w-full overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center px-8 sm:px-16 py-32 sm:py-48 md:py-56 w-full overflow-hidden"
     >
       {/* 透かし文字 */}
       <motion.div
@@ -33,13 +33,19 @@ export function Manifesto() {
 
       <div className="max-w-5xl mx-auto w-full relative z-10 flex flex-col gap-24 sm:gap-40">
         {/* PURPOSE ブロック */}
-        <motion.div style={{ y: purposeY, scale: purposeScale }} className="flex flex-col items-start">
+        <motion.div
+          style={{ y: purposeY, scale: purposeScale }}
+          className="flex flex-col items-start"
+        >
           <div className="flex flex-col mb-8 sm:mb-12">
-            <h2 className="text-xs font-medium tracking-[0.4em] text-primary uppercase">Purpose</h2>
+            <h2 className="text-xs font-medium tracking-[0.4em] text-primary uppercase">
+              Purpose
+            </h2>
             <div className="w-12 h-[1px] bg-primary/30 mt-4" />
           </div>
           <h3 className="text-[clamp(1.875rem,5vw,3.5rem)] font-light text-text-primary tracking-wide leading-snug mb-8 sm:mb-10">
-            自治の未来を創る、<br />
+            自治の未来を創る、
+            <br />
             <span className="text-primary font-normal">共助の力</span>。
           </h3>
           <p className="text-[clamp(1rem,2.5vw,1.375rem)] leading-relaxed font-light text-text-primary/75 tracking-wide max-w-3xl">
@@ -53,13 +59,21 @@ export function Manifesto() {
         </motion.div>
 
         {/* BACKGROUND & VISION ブロック */}
-        <motion.div style={{ y: visionY, scale: visionScale }} className="flex flex-col items-start">
+        <motion.div
+          style={{ y: visionY, scale: visionScale }}
+          className="flex flex-col items-start"
+        >
           <div className="flex flex-col mb-8 sm:mb-12">
-            <h2 className="text-xs font-medium tracking-[0.4em] text-primary uppercase">Background & Vision</h2>
+            <h2 className="text-xs font-medium tracking-[0.4em] text-primary uppercase">
+              Background & Vision
+            </h2>
             <div className="w-12 h-[1px] bg-primary/30 mt-4" />
           </div>
           <h3 className="text-[clamp(1.875rem,5vw,3.5rem)] font-light text-text-primary tracking-wide leading-snug mb-8 sm:mb-10">
-            毎年の<span className="text-accent font-normal">補助金頼み</span>から<br />の脱却。
+            毎年の<span className="text-accent font-normal">補助金頼み</span>
+            から
+            <br />
+            の脱却。
           </h3>
           <div className="flex flex-col gap-6 text-[clamp(1rem,2.2vw,1.25rem)] leading-loose font-light text-text-primary/70 max-w-3xl">
             <p>
@@ -72,8 +86,7 @@ export function Manifesto() {
               第2回 次世代自治共創会議（すずかん田園フォーラム）では、
               地域自治に不可欠な人材のエコシステムと、
               住民主体のイノベーションに焦点を当てます。
-              先駆者たちの知見を交わし、
-              これからの地方自治・地域経営の
+              先駆者たちの知見を交わし、 これからの地方自治・地域経営の
               新たなパラダイムを共創します。
             </p>
           </div>

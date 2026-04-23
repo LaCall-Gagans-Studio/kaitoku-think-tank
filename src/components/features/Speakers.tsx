@@ -3,9 +3,6 @@
 import { motion } from "framer-motion";
 import { TRANSITIONS } from "@/lib/animations";
 
-const getPlaceholder = (id: number) =>
-  `https://images.unsplash.com/photo-${id}?w=500&h=500&fit=crop&q=80`;
-
 interface Speaker {
   name: string;
   title: string;
@@ -84,7 +81,7 @@ export function Speakers() {
   return (
     <section
       id="speakers"
-      className="relative py-24 sm:py-32 px-6 sm:px-8 w-full"
+      className="relative py-24 sm:py-32 px-8 sm:px-16 w-full"
     >
       <div className="max-w-7xl mx-auto w-full">
         {/* セクションヘッダー */}

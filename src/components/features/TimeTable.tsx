@@ -160,6 +160,65 @@ export function TimeTable() {
       id="timetable"
       className="relative py-24 sm:py-32 px-6 sm:px-8 w-full bg-slate-50/20"
     >
+      {/* ──── 会場案内 ──── */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={TRANSITIONS.base}
+        className="mb-16 sm:mb-24"
+      >
+        {/* カード */}
+        <div className="relative bg-white/50 backdrop-blur-md border border-white/25 rounded-2xl p-8 sm:p-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_24px_rgba(0,0,0,0.04)]">
+          {/* 四隅装飾 */}
+          <div className="absolute top-0 left-0 w-5 h-5 border-t border-l border-primary/30" />
+          <div className="absolute top-0 right-0 w-5 h-5 border-t border-r border-primary/30" />
+          <div className="absolute bottom-0 left-0 w-5 h-5 border-b border-l border-primary/30" />
+          <div className="absolute bottom-0 right-0 w-5 h-5 border-b border-r border-primary/30" />
+
+          <p className="text-[10px] font-medium tracking-[0.4em] text-primary uppercase mb-6">
+            Venue & Schedule
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
+            {/* 日時 */}
+            <div className="flex flex-col gap-1.5">
+              <p className="text-xs text-text-primary/45 tracking-widest">
+                DATE & TIME
+              </p>
+              <p className="text-lg sm:text-xl font-light text-text-primary leading-snug">
+                2026年10月3日（土）
+              </p>
+              <p className="text-base font-light text-text-primary/70">
+                13:00 〜 18:00
+              </p>
+            </div>
+
+            <div className="w-full sm:w-[1px] h-[1px] sm:h-auto bg-primary/10" />
+
+            {/* 会場 */}
+            <div className="flex flex-col gap-1.5 flex-grow">
+              <p className="text-xs text-text-primary/45 tracking-widest">
+                VENUE
+              </p>
+              <p className="text-lg sm:text-xl font-light text-text-primary leading-snug">
+                東京大学本郷キャンパス
+                <br className="sm:hidden" /> 山上会館
+              </p>
+              <div className="flex flex-wrap gap-2 mt-1">
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-primary bg-primary/8 px-3 py-1 rounded-full">
+                  <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+                  オンライン配信あり
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-accent bg-accent/10 px-3 py-1 rounded-full">
+                  <span className="w-1.5 h-1.5 bg-accent rounded-full" />
+                  18時〜 交流会（同会場）
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
       <div className="max-w-4xl mx-auto w-full">
         {/* ヘッダー */}
         <motion.div
@@ -185,11 +244,11 @@ export function TimeTable() {
         <div className="relative">
           {/*
            * 垂直ライン:
-           * スマホ: ノードのみ左端に配置するため left=6px（ノード中心）
-           * PC: 時間列(56px) + gap(24px) + ノード中心(6px) = 86px
-           * それぞれ sm: ブレークポイントで切り替え
+           * スマホ: ノードのみ左端に配置するため left=6px（ノード w-3=12px の中心）
+           * PC: w-14(3.5rem) + gap-6(1.5rem) + node中心(w-3.5/2=0.4375rem) = 5.4375rem
+           *   (ベースフォント 18px を考慮しremベースで指定することでpx変動に肧強になる)
            */}
-          <div className="absolute left-[6px] sm:left-[86px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/5 via-primary/20 to-primary/5" />
+          <div className="absolute left-[6px] sm:left-[5.4375rem] top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/5 via-primary/20 to-primary/5" />
 
           <div className="flex flex-col gap-5 sm:gap-6">
             {timetableData.map((item, index) => (
@@ -315,10 +374,7 @@ function SessionCard({
           </span>
         )}
         <h3 className="min-w-0 font-normal leading-snug break-all sm:break-keep">
-          <SplitTitle
-            title={item.title}
-            highlight={item.highlight}
-          />
+          <SplitTitle title={item.title} highlight={item.highlight} />
         </h3>
       </div>
 
@@ -385,20 +441,28 @@ function SessionCard({
  * タイトルを「：」で分割し、前半をラベル（小・淡）、後半を強調タイトル（大・濃）で表示。
  * 「：」がない場合は通常のテキストとして表示。
  */
-function SplitTitle({ title, highlight }: { title: string; highlight: boolean }) {
+function SplitTitle({
+  title,
+  highlight,
+}: {
+  title: string;
+  highlight: boolean;
+}) {
   const colonIdx = title.indexOf("：");
 
   if (colonIdx === -1) {
     // 「：」なし → そのまま表示
     return (
-      <span className={`text-base ${highlight ? "text-text-primary" : "text-text-primary/65"}`}>
+      <span
+        className={`text-base ${highlight ? "text-text-primary" : "text-text-primary/65"}`}
+      >
         {title}
       </span>
     );
   }
 
-  const label = title.slice(0, colonIdx);       // 例: "第1部"
-  const mainTitle = title.slice(colonIdx + 1);  // 例: "自治体における人材の確保と活用"
+  const label = title.slice(0, colonIdx); // 例: "第1部"
+  const mainTitle = title.slice(colonIdx + 1); // 例: "自治体における人材の確保と活用"
 
   return (
     <span className="flex flex-col gap-0.5">
@@ -407,7 +471,9 @@ function SplitTitle({ title, highlight }: { title: string; highlight: boolean })
         {label}
       </span>
       {/* メインタイトル: やや大きく・濃く・ウェイトを少し上げて強調 */}
-      <span className={`text-base sm:text-lg font-medium leading-snug ${highlight ? "text-text-primary" : "text-text-primary/70"}`}>
+      <span
+        className={`text-base sm:text-lg font-medium leading-snug ${highlight ? "text-text-primary" : "text-text-primary/70"}`}
+      >
         {mainTitle}
       </span>
     </span>
