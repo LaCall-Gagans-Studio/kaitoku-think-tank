@@ -28,7 +28,7 @@ export function Hero() {
         <img
           src="/hero_bg.webp"
           alt="hero-background"
-          className="h-full w-full"
+          className="h-full w-full object-cover"
         />
       </div>
 
@@ -90,7 +90,7 @@ export function Hero() {
           variants={itemVariants}
           className="text-[clamp(0.875rem,1.8vw,1.125rem)] font-medium text-text-primary/75 tracking-wider leading-relaxed mb-14 max-w-xl"
         >
-          補助金に依らない、真の地方創生へ。
+          次世代の地方自治は、ここから。
           <br />
           専門人材×共助×テクノロジーが交差する場。
         </motion.p>
