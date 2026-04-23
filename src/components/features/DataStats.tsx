@@ -1,6 +1,12 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useTransform,
+  animate,
+} from "framer-motion";
 import { useEffect, useRef } from "react";
 import { TRANSITIONS, EASING } from "@/lib/animations";
 
@@ -50,8 +56,12 @@ export function DataStats() {
           transition={TRANSITIONS.base}
           className="mb-16"
         >
-          <h2 className="text-sm tracking-[0.3em] text-primary mb-4 font-medium">PREVIOUS ACHIEVEMENTS</h2>
-          <p className="text-xl font-light text-text-primary/80">第1回フォーラム 実績（2025年5月31日）</p>
+          <h2 className="text-sm tracking-[0.3em] text-primary mb-4 font-medium">
+            PREVIOUS ACHIEVEMENTS
+          </h2>
+          <p className="text-xl font-light text-text-primary/80">
+            第1回フォーラム 実績（2025年5月31日）
+          </p>
         </motion.div>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-16 md:gap-32 mb-20">
@@ -64,9 +74,13 @@ export function DataStats() {
           >
             <div className="text-5xl md:text-7xl font-light text-text-primary tracking-tighter mb-4 flex items-baseline">
               <Counter from={0} to={143} />
-              <span className="text-xl md:text-2xl ml-2 text-text-primary/50 font-normal">人</span>
+              <span className="text-xl md:text-2xl ml-2 text-text-primary/50 font-normal">
+                人
+              </span>
             </div>
-            <p className="text-sm tracking-widest text-primary font-medium">対面参加</p>
+            <p className="text-sm tracking-widest text-primary font-medium">
+              対面参加
+            </p>
           </motion.div>
 
           {/* Divider */}
@@ -81,9 +95,13 @@ export function DataStats() {
           >
             <div className="text-5xl md:text-7xl font-light text-text-primary tracking-tighter mb-4 flex items-baseline">
               <Counter from={0} to={430} />
-              <span className="text-xl md:text-2xl ml-2 text-text-primary/50 font-normal">人</span>
+              <span className="text-xl md:text-2xl ml-2 text-text-primary/50 font-normal">
+                人
+              </span>
             </div>
-            <p className="text-sm tracking-widest text-primary font-medium">オンライン参加</p>
+            <p className="text-sm tracking-widest text-primary font-medium">
+              オンライン参加
+            </p>
           </motion.div>
         </div>
 
@@ -95,7 +113,7 @@ export function DataStats() {
           transition={{ ...TRANSITIONS.base, delay: 0.6 }}
         >
           <a
-            href="https://www.kaitoku.org/suzuden0531/"
+            href="https://www.kaitoku.org/2025/06/24/%e7%ac%ac%e4%b8%80%e5%9b%9e-%e6%ac%a1%e4%b8%96%e4%bb%a3%e8%87%aa%e6%b2%bb%e5%85%b1%e5%89%b5%e4%bc%9a%e8%ad%b0%e3%80%80%e7%b5%82%e4%ba%86%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-4 border border-primary/40 rounded-full text-primary hover:bg-primary/5 transition-all duration-300 tracking-widest text-sm hover:-translate-y-1 shadow-sm"
