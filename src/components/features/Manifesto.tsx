@@ -50,10 +50,15 @@ export function Manifesto() {
           </h3>
           <p className="text-[clamp(1rem,2.5vw,1.375rem)] leading-relaxed font-light text-text-primary/75 tracking-wide max-w-3xl">
             補助金や一過性の施策に依存しない、
+            <br />
             真に持続可能な地方創生のあり方とは何か。
+            <br />
             本会議では、小規模自治体が直面する
+            <br />
             「専門人材の確保」という喫緊の課題に対し、
+            <br />
             住民同士の「共助」を基軸とした
+            <br />
             地域活性化の先進事例を解き明かします。
           </p>
         </motion.div>
@@ -71,23 +76,31 @@ export function Manifesto() {
           </div>
           <h3 className="text-[clamp(1.875rem,5vw,3.5rem)] font-light text-text-primary tracking-wide leading-snug mb-8 sm:mb-10">
             毎年の<span className="text-accent font-normal">補助金頼み</span>
-            から
-            <br />
-            の脱却。
+            からの脱却。
           </h3>
           <div className="flex flex-col gap-6 text-[clamp(1rem,2.2vw,1.25rem)] leading-loose font-light text-text-primary/70 max-w-3xl">
             <p>
-              「資金があっても人がいない」「当座の事業は回っても、持続しない」——
+              「資金があっても人がいない」
+              <br />
+              「当座の事業は回っても、持続しない」——
+              <br />
               まち・ひと・しごと創生法の制定から約10年。
+              <br />
               私たちが直面しているのは、地方創生のリアルと、
+              <br />
               その持続可能性を問う厳しい現実です。
             </p>
             <p>
               第2回 次世代自治共創会議（すずかん田園フォーラム）では、
+              <br />
               地域自治に不可欠な人材のエコシステムと、
+              <br />
               住民主体のイノベーションに焦点を当てます。
+              <br />
               先駆者たちの知見を交わし、 これからの地方自治・地域経営の
+              <br />
               新たなパラダイムを共創します。
+              <br />
             </p>
           </div>
         </motion.div>
