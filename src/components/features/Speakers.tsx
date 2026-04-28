@@ -94,8 +94,17 @@ const speakersData = {
 };
 
 const freeDiscussionParticipants = [
-  { name: "中山昌生", affiliation: "懐徳総合研究所", title: "代表取締役" },
-  { name: "松原直輝", affiliation: "懐徳総合研究所", title: "主席研究員" },
+  {
+    name: "中山昌生",
+    affiliation: "懐徳総合研究所",
+    title: "代表取締役",
+  },
+  {
+    name: "松原直輝",
+    affiliation: "懐徳総合研究所",
+    title: "主席研究員",
+    link: "https://researchmap.jp/n-matsubara2019",
+  },
 ];
 
 export function Speakers() {
