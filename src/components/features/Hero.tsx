@@ -101,7 +101,9 @@ export function Hero() {
 
         {/* CTA ボタン - 重なり防止のため下部に余白を確保 */}
         <motion.div variants={itemVariants} className="pb-32 sm:pb-40">
-          <CornerButton>プレエントリー</CornerButton>
+          <CornerButton disabled className="opacity-80 cursor-not-allowed">
+            プレエントリー（7/3公開予定）
+          </CornerButton>
         </motion.div>
       </motion.div>
 

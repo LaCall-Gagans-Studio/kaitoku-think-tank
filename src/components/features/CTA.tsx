@@ -39,7 +39,9 @@ export function CTA() {
         </p>
 
         <div className="z-10">
-          <CornerButton>プレエントリーはこちら</CornerButton>
+          <CornerButton disabled className="opacity-60 cursor-not-allowed">
+            プレエントリー（7/3公開予定）
+          </CornerButton>
         </div>
       </motion.div>
 

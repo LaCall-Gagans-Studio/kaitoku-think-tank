@@ -103,6 +103,27 @@ export function Manifesto() {
               <br />
             </p>
           </div>
+
+          {/* 前回の様子の写真 (Dummy Data) */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full rounded-2xl overflow-hidden mt-16 sm:mt-24 shadow-[0_20px_60px_rgba(112,153,199,0.15)] group"
+          >
+            <div className="absolute inset-0 bg-primary/10 z-10 pointer-events-none mix-blend-overlay transition-opacity duration-700 group-hover:opacity-0" />
+            <img 
+              src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2000&auto=format&fit=crop" 
+              alt="第1回 次世代自治共創会議の様子" 
+              className="w-full h-auto aspect-video sm:aspect-[21/9] object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+            />
+            <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20">
+              <span className="text-white/90 text-[10px] sm:text-xs font-medium tracking-widest bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.2)]">
+                第1回 次世代自治共創会議の様子
+              </span>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

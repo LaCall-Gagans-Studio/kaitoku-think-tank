@@ -14,10 +14,10 @@ const speakersData = {
   tier1: [
     {
       name: "鈴木 寛",
-      title: "東大公共政策大学院教授",
+      title: "東大公共政策大学院教授、元文部科学副大臣",
       image: "/speakers/suzukan.webp",
       profile:
-        "文部科学副大臣等を歴任。教育・医療・科学技術イノベーション等の政策立案に尽力し、社会創発のエコシステム構築を目指す。",
+        "1986年東京大学法学部卒業。通商産業省、慶應義塾大学助教授を経て参議院議員(12年間)。文部科学副大臣（二期）、文部科学大臣補佐官（四期）などを歴任。地域活性化、教育、医療、スポーツ、文化、科学技術イノベーションに関する政策づくりや各種プロデュースを中心に活動。現在、大阪大学招聘教授、千葉大学医学部客員教授、電通大学客員教授、福井大学客員教授、和歌山大学客員教授、神奈川県参与、神奈川県立保健福祉大学理事、Teach for All Global board member, 日本サッカー協会参与、NPO法人日本教育再興連盟代表理事（ROJE）、ウェルビーイング学会副代表理事なども務める。",
     },
     {
       name: "湯崎 英彦",
@@ -36,46 +36,67 @@ const speakersData = {
   ] satisfies Speaker[],
   tier2: [
     {
-      name: "荒川 裕貴",
-      title: "東京大学特任助教",
-      image: "/speakers/arakawa.webp",
-      profile:
-        "「地域人材のパス」をテーマに、次世代を担う専門人材の育成と地域への定着メカニズムを研究。",
+      committee: "第1部：自治体における人材の確保と活用",
+      speakers: [
+        {
+          name: "荒川 裕貴",
+          title:
+            "横浜市立大学医学部公衆衛生学教室助教、東京大学公共政策大学院特任助教、一般社団法人Next Public Health Lab代表理事",
+          image: "/speakers/arakawa.webp",
+          profile:
+            "2011年金沢大学医学部卒業。東京都立多摩総合医療センターで臨床経験を積んだ後、東京大学公衆衛生大学院で公衆衛生学修士（専門職）、医学博士を取得。現在は「人のつながりと健康」をテーマに、横浜市立大学で社会的孤立や孤独感に関わる研究、医学部生への公衆衛生教育に携わる。また、横浜市で実施した産官学連携の社会実装PJTの経験を元に、公衆衛生専門職を中心としたチームNext Public Health Labを立ち上げ、自治体・企業と専門職が共に健康づくりのエビデンス創出と社会実装を行う体制を目指して活動中。2024年11月より東京大学公共政策大学院特任助教。",
+        },
+      ],
     },
     {
-      name: "村上 敬亮",
-      title: "東京大学特任教授",
-      image: "/speakers/murakami.webp",
-      profile:
-        "「AIと行政の最前線」をテーマに、最新テクノロジーを用いた公共サービスのアップデートを提言。",
+      committee: "特別トークショー「AIと行政の最前線」",
+      speakers: [
+        {
+          name: "村上 敬亮",
+          title: "東京大学特任教授",
+          image: "/speakers/murakami.webp",
+          profile:
+            "「AIと行政の最前線」をテーマに、最新テクノロジーを用いた公共サービスのアップデートを提言。",
+        },
+      ],
     },
     {
-      name: "小玉 祥平",
-      title: "三豊市教育センター長",
-      image: "/speakers/kodama.webp",
-      profile:
-        "「放課後共創基金」を立ち上げ、行政と民間の協働による新しい教育支援モデルを構築。",
+      committee: "第2部：共助からの地域活性化を考える",
+      speakers: [
+        {
+          name: "小玉 祥平",
+          title: "三豊市教育センター長",
+          image: "/speakers/kodama.webp",
+          profile:
+            "「放課後共創基金」を立ち上げ、行政と民間の協働による新しい教育支援モデルを構築。",
+        },
+        {
+          name: "田島 楓",
+          title: "暮らしの交通株式会社",
+          image: "/speakers/tajima.webp",
+          profile:
+            "「まちの移動をつくりだす」をミッションに、過疎地域における持続可能なモビリティサービスを展開。",
+        },
+        {
+          name: "横山 裕一",
+          title: "瀬戸内ReFraming代表",
+          image: "/speakers/yokoyama.webp",
+          profile:
+            "「Basic Infra Villege」構想を通じ、限界集落におけるインフラの自立と共助のコミュニティ形成を推進。",
+        },
+      ],
     },
-    {
-      name: "田島 楓",
-      title: "暮らしの交通株式会社",
-      image: "/speakers/tajima.webp",
-      profile:
-        "「まちの移動をつくりだす」をミッションに、過疎地域における持続可能なモビリティサービスを展開。",
-    },
-    {
-      name: "横山 裕一",
-      title: "瀬戸内ReFraming代表",
-      image: "/speakers/yokoyama.webp",
-      profile:
-        "「Basic Infra Villege」構想を通じ、限界集落におけるインフラの自立と共助のコミュニティ形成を推進。",
-    },
-  ] satisfies Speaker[],
+  ],
   tier3: [
     { name: "中山 昌生", title: "懐徳総合研究所 代表取締役", role: "主催者" },
     { name: "松原 直輝", title: "懐徳総合研究所 主席研究員", role: "主催者" },
   ],
 };
+
+const freeDiscussionParticipants = [
+  { name: "中山昌生", affiliation: "懐徳総合研究所", title: "代表取締役" },
+  { name: "松原直輝", affiliation: "懐徳総合研究所", title: "主席研究員" },
+];
 
 export function Speakers() {
   return (
@@ -113,20 +134,71 @@ export function Speakers() {
           ))}
         </div>
 
-        {/* Tier 2: パネリスト（5名）— 1列 → sm:2列 → lg:3列 */}
+        {/* Tier 2: パネリスト（5名）— 部会ごとに分類 */}
         <div className="mb-16 sm:mb-24">
-          <p className="text-xs font-medium tracking-[0.4em] text-primary text-center mb-10 sm:mb-12">
+          <p className="text-xs font-medium tracking-[0.4em] text-primary text-center mb-12 sm:mb-16">
             GUEST SPEAKERS
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {speakersData.tier2.map((speaker, i) => (
-              <SpeakerCard
-                key={speaker.name}
-                speaker={speaker}
-                index={i}
-                size="medium"
-              />
+          <div className="flex flex-col gap-16 sm:gap-20">
+            {speakersData.tier2.map((committeeGroup, cIdx) => (
+              <div key={cIdx}>
+                <h3 className="text-center text-lg sm:text-xl font-medium text-text-primary mb-8 border-b border-primary/20 pb-4 max-w-2xl mx-auto">
+                  {committeeGroup.committee}
+                </h3>
+                <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
+                  {committeeGroup.speakers.map((speaker, i) => (
+                    <div
+                      key={speaker.name}
+                      className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm"
+                    >
+                      <SpeakerCard speaker={speaker} index={i} size="medium" />
+                    </div>
+                  ))}
+                </div>
+              </div>
             ))}
+          </div>
+        </div>
+
+        {/* 自由対談参加予定 */}
+        <div className="mb-16 sm:mb-24">
+          <p className="text-xs font-medium tracking-[0.4em] text-primary text-center mb-6 sm:mb-8">
+            FREE DISCUSSION PARTICIPANTS
+          </p>
+          <h3 className="text-center text-xl sm:text-2xl font-light text-text-primary tracking-wider mb-8 sm:mb-12">
+            自由対談参加予定
+          </h3>
+          <div className="flex flex-wrap justify-center items-center gap-x-5 gap-y-3 text-[15px] sm:text-[17px] text-text-primary/80 font-light leading-relaxed max-w-6xl mx-auto text-center px-4">
+            {freeDiscussionParticipants.map((p, i) => (
+              <span key={i} className="inline-flex items-center">
+                {p.link ? (
+                  <a
+                    href={p.link}
+                    className="hover:text-primary transition-colors underline decoration-primary/30 underline-offset-4"
+                  >
+                    {p.name}
+                    <span className="text-sm ml-1">
+                      （{p.affiliation} {p.title}）
+                    </span>
+                  </a>
+                ) : (
+                  <span>
+                    {p.name}
+                    <span className="text-sm ml-1">
+                      （{p.affiliation} {p.title}）
+                    </span>
+                  </span>
+                )}
+                <span className="ml-5 text-primary/30 font-extralight select-none">
+                  /
+                </span>
+              </span>
+            ))}
+            <span className="inline-flex items-center text-text-primary/60">
+              {freeDiscussionParticipants.length > 0
+                ? "ほか順次追加予定（随時更新）"
+                : "順次公開予定（随時更新）"}
+            </span>
           </div>
         </div>
 

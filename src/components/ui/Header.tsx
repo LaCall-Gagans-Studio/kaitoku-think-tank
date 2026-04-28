@@ -81,12 +81,9 @@ export function Header() {
           </nav>
 
           {/* PC CTA ボタン */}
-          <a
-            href="#cta"
-            className="hidden md:inline-flex items-center justify-center px-5 py-2.5 text-xs font-medium tracking-widest text-primary border border-primary/30 hover:bg-primary/5 hover:border-primary/50 transition-all duration-300 rounded-full"
-          >
-            プレエントリー
-          </a>
+          <span className="hidden md:inline-flex items-center justify-center px-5 py-2.5 text-xs font-medium tracking-widest text-primary border border-primary/30 rounded-full opacity-60 cursor-not-allowed">
+            プレエントリー（7/3公開予定）
+          </span>
 
           {/* スマホ ハンバーガーボタン */}
           <button
@@ -151,16 +148,14 @@ export function Header() {
               ))}
             </nav>
 
-            <motion.a
-              href="#cta"
-              onClick={() => setMenuOpen(false)}
+            <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="px-10 py-4 text-sm font-medium tracking-widest text-primary border border-primary/30 rounded-full hover:bg-primary/5 transition-all duration-300"
+              className="px-8 py-4 text-sm font-medium tracking-widest text-primary border border-primary/30 rounded-full opacity-60 cursor-not-allowed text-center"
             >
-              プレエントリーはこちら
-            </motion.a>
+              プレエントリーは<br className="sm:hidden" />7/3公開予定
+            </motion.span>
           </motion.div>
         )}
       </AnimatePresence>

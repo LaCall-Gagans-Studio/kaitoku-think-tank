@@ -164,12 +164,12 @@ export function TimeTable() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
+        viewport={{ once: true, margin: "-200px" }}
         transition={TRANSITIONS.base}
         className="mb-16 sm:mb-24"
       >
         {/* カード */}
-        <div className="relative bg-white/50 backdrop-blur-md border border-white/25 rounded-2xl p-8 sm:p-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_24px_rgba(0,0,0,0.04)]">
+        <div className="relative lg:mx-32 bg-white/50 backdrop-blur-md border border-white/25 rounded-2xl p-8 sm:p-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_24px_rgba(0,0,0,0.04)]">
           {/* 四隅装飾 */}
           <div className="absolute top-0 left-0 w-5 h-5 border-t border-l border-primary/30" />
           <div className="absolute top-0 right-0 w-5 h-5 border-t border-r border-primary/30" />
