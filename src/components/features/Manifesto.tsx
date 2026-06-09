@@ -114,7 +114,7 @@ export function Manifesto() {
           >
             <div className="absolute inset-0 bg-primary/10 z-10 pointer-events-none mix-blend-overlay transition-opacity duration-700 group-hover:opacity-0" />
             <img 
-              src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2000&auto=format&fit=crop" 
+              src="/1st.webp" 
               alt="第1回 次世代自治共創会議の様子" 
               className="w-full h-auto aspect-video sm:aspect-[21/9] object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
             />
