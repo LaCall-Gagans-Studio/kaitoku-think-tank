@@ -35,12 +35,14 @@ export function CTA() {
           自治の未来へ。
         </h2>
         <p className="text-[clamp(0.9375rem,2vw,1.125rem)] font-light text-wrap text-text-primary/65 mb-10 sm:mb-12 max-w-lg z-10 leading-loose">
-          次世代自治共創会議に参加し、持続可能な地域社会への歩みを、共に始める。
+          次世代自治共創会議に参加して、<br />
+          心地よく続く地域づくりを、<br />
+          ともに考えていきませんか。
         </p>
 
         <div className="z-10">
           <CornerButton disabled className="opacity-60 cursor-not-allowed">
-            プレエントリー（7/3公開予定）
+            プレエントリー（近日公開予定）
           </CornerButton>
         </div>
       </motion.div>
@@ -78,10 +80,12 @@ export function CTA() {
             </h3>
             <div className="grid grid-cols-2 gap-x-6 gap-y-3">
               {[
+                "コラボレイティブ・ガバナンス社会連携講座", 
                 "懐徳会",
                 "株式会社懐徳総合研究所",
                 "株式会社パブリックテクノロジーズ",
                 "若手町村長会",
+                
               ].map((org) => (
                 <p
                   key={org}

@@ -9,11 +9,11 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-start w-full">
       <Hero />
-      {/* <Manifesto />
-      <Speakers />
+      <Manifesto />
+      {/* <Speakers /> */}
       <TimeTable />
       <CTA />
-      <DataStats /> */}
+      <DataStats />
     </div>
   );
 }

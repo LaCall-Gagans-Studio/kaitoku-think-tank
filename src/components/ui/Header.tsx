@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "#manifesto", label: "MANIFESTO" },
-  { href: "#speakers", label: "SPEAKERS" },
+  // { href: "#speakers", label: "SPEAKERS" },
   { href: "#timetable", label: "TIME TABLE" },
 ];
 
@@ -154,7 +154,7 @@ export function Header() {
               transition={{ delay: 0.3, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="px-8 py-4 text-sm font-medium tracking-widest text-primary border border-primary/30 rounded-full opacity-60 cursor-not-allowed text-center"
             >
-              プレエントリーは<br className="sm:hidden" />7/3公開予定
+              プレエントリーは<br className="sm:hidden" />近日公開予定
             </motion.span>
           </motion.div>
         )}
