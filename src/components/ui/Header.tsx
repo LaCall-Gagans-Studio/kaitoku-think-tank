@@ -82,7 +82,7 @@ export function Header() {
 
           {/* PC CTA ボタン */}
           <span className="hidden md:inline-flex items-center justify-center px-5 py-2.5 text-xs font-medium tracking-widest text-primary border border-primary/30 rounded-full opacity-60 cursor-not-allowed">
-            プレエントリー（7/3公開予定）
+            プレエントリー（近日公開予定）
           </span>
 
           {/* スマホ ハンバーガーボタン */}
