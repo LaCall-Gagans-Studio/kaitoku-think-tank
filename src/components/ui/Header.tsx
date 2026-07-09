@@ -6,9 +6,9 @@ import { TRANSITIONS } from "@/lib/animations";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "#manifesto", label: "MANIFESTO" },
+  { href: "#manifesto", label: "イベントについて" },
   // { href: "#speakers", label: "SPEAKERS" },
-  { href: "#timetable", label: "TIME TABLE" },
+  { href: "#timetable", label: "タイムテーブル" },
 ];
 
 export function Header() {
@@ -61,10 +61,16 @@ export function Header() {
           {/* ロゴ */}
           <a
             href="#"
-            className="font-semibold tracking-widest text-sm text-text-primary flex items-center gap-2 shrink-0"
+            className="font-medium tracking-wide text-xs sm:text-sm text-text-primary flex items-center gap-2 sm:gap-2.5 shrink-0"
           >
-            <span className="w-2 h-2 rounded-full bg-primary inline-block" />
-            KAITOKU
+            <img
+              src="/favicon.png"
+              alt=""
+              width={192}
+              height={192}
+              className="block h-9 sm:h-10 w-auto shrink-0 object-contain"
+            />
+            <span className="truncate">懐徳総合研究所</span>
           </a>
 
           {/* PC ナビゲーション */}

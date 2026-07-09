@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { fadeUpVariants, TRANSITIONS } from "@/lib/animations";
 
 export function Manifesto() {
   const containerRef = useRef<HTMLElement>(null);
@@ -123,6 +122,32 @@ export function Manifesto() {
                 第1回 次世代自治共創会議の様子
               </span>
             </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+            className="mt-10 sm:mt-12 flex flex-col items-start gap-4"
+          >
+            <div className="w-12 h-px bg-primary/30" />
+            <a
+              href="https://www.kaitoku.org/2025/06/24/%e7%ac%ac%e4%b8%80%e5%9b%9e-%e6%ac%a1%e4%b8%96%e4%bb%a3%e8%87%aa%e6%b2%bb%e5%85%b1%e5%89%b5%e4%bc%9a%e8%ad%b0%e3%80%80%e7%b5%82%e4%ba%86%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-baseline gap-3 sm:gap-4 text-[clamp(1rem,2vw,1.125rem)] font-light text-text-primary/65 hover:text-primary tracking-wide transition-colors duration-500"
+            >
+              <span className="border-b border-primary/15 group-hover:border-primary/40 pb-0.5 transition-colors duration-500">
+                昨年度の様子はこちら
+              </span>
+              <span
+                aria-hidden
+                className="text-xs tracking-[0.3em] text-primary/35 group-hover:text-primary group-hover:translate-x-1 transition-all duration-500"
+              >
+                →
+              </span>
+            </a>
           </motion.div>
         </motion.div>
       </div>

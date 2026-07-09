@@ -92,7 +92,7 @@ export function TimeTable() {
   return (
     <section
       id="timetable"
-      className="relative py-24 sm:py-32 px-6 sm:px-8 w-full"
+      className="relative py-24 sm:py-32 px-4 sm:px-8 w-full"
     >
       <div className="max-w-4xl mx-auto w-full">
         {/* 会場・日時 */}
@@ -163,7 +163,7 @@ export function TimeTable() {
             >
               {index > 0 && (
                 <div
-                  className={`ml-24 sm:ml-32 border-t ${
+                  className={`border-t sm:ml-32 ${
                     item.kind === "part"
                       ? "border-primary/20"
                       : "border-primary/8"
@@ -172,14 +172,14 @@ export function TimeTable() {
               )}
 
               <article
-                className={`grid grid-cols-[5rem_1fr] sm:grid-cols-[6rem_1fr] gap-x-4 sm:gap-x-8 py-5 sm:py-6 ${
+                className={`flex flex-col sm:grid sm:grid-cols-[6rem_1fr] sm:gap-x-8 py-5 sm:py-6 ${
                   item.kind === "part" ? "pt-8 sm:pt-10" : ""
                 }`}
               >
                 {/* 時刻 */}
                 <time
                   dateTime={item.time.replace(":", "")}
-                  className={`pt-0.5 text-right font-mono text-base tabular-nums tracking-tight ${
+                  className={`font-mono text-sm sm:text-base tabular-nums tracking-tight sm:text-right sm:pt-0.5 ${
                     item.kind === "break"
                       ? "text-text-primary/35"
                       : "text-primary"
@@ -189,7 +189,7 @@ export function TimeTable() {
                 </time>
 
                 {/* 内容 */}
-                <div className="min-w-0">
+                <div className="min-w-0 mt-1 sm:mt-0">
                   {item.kind === "part" ? (
                     <PartBlock item={item} />
                   ) : item.kind === "break" ? (
@@ -242,15 +242,15 @@ function PartBlock({ item }: { item: SessionItem }) {
       </div>
 
       {item.details && (
-        <ul className="flex flex-col gap-0 border-l border-primary/12 pl-4 sm:pl-5">
+        <ul className="flex flex-col gap-0 border-l border-primary/12 pl-3 sm:pl-5">
           {item.details.map((detail, dIdx) => (
             <li
               key={dIdx}
               className={`py-2.5 ${
-                detail.sub ? "pl-3 sm:pl-4" : ""
+                detail.sub ? "pl-2 sm:pl-4" : ""
               } ${dIdx < item.details!.length - 1 ? "border-b border-primary/6" : ""}`}
             >
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-4 gap-0.5">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 sm:flex-nowrap sm:gap-4">
                 {detail.time && (
                   <time
                     className="shrink-0 font-mono text-xs tabular-nums text-text-primary/35 sm:w-12 sm:text-right"
