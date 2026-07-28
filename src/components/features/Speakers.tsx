@@ -14,7 +14,16 @@ interface Speaker {
   imagePosition?: "top" | "center";
 }
 
-const speakersData = {
+interface CommitteeGroup {
+  committee: string;
+  speakers: Speaker[];
+}
+
+const speakersData: {
+  tier1: Speaker[];
+  tier2: CommitteeGroup[];
+  tier3: { name: string; title: string; role: string }[];
+} = {
   tier1: [
     {
       name: "鈴木 寛",
@@ -38,7 +47,7 @@ const speakersData = {
       profile:
         "1984年奈良県磯城郡三宅町生まれ。2015年に「全国で2番目に小さい町」の奈良県三宅町の議会議員に当選。2016年から町長として「日本一夢が叶う住民参加型の町」へ改革を進める。ビジョンを象徴する交流まちづくりセンター「MiiMo（みぃも）」が2021年12月にグランドオープン。「対話・挑戦・失敗」のバリューサイクルを大切に、ウェルビーイングの高い「自分らしくハッピーにスモール（住もうる）タウン」の実現を目指す。",
     },
-  ] satisfies Speaker[],
+  ],
   tier2: [
     {
       committee: "第1部：自治体における人材の確保と活用",
