@@ -65,6 +65,7 @@ const speakersData: {
           title: "須崎市教育長",
           image: "/speakers/speaker.png",
           profile: "プロフィール準備中。",
+          hidden: true,
         },
         {
           name: "細田 眞由美",
