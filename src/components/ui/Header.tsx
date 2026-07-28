@@ -7,8 +7,8 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "#manifesto", label: "イベントについて" },
-  // { href: "#speakers", label: "SPEAKERS" },
   { href: "#timetable", label: "タイムテーブル" },
+  { href: "#speakers", label: "登壇者" },
 ];
 
 export function Header() {

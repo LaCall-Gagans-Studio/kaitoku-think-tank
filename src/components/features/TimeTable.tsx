@@ -92,7 +92,7 @@ export function TimeTable() {
   return (
     <section
       id="timetable"
-      className="relative py-24 sm:py-32 px-4 sm:px-8 w-full"
+      className="relative py-16 sm:py-16 px-4 sm:px-8 w-full"
     >
       <div className="max-w-4xl mx-auto w-full">
         {/* 会場・日時 */}
@@ -176,7 +176,6 @@ export function TimeTable() {
                   item.kind === "part" ? "pt-8 sm:pt-10" : ""
                 }`}
               >
-                {/* 時刻 */}
                 <time
                   dateTime={item.time.replace(":", "")}
                   className={`font-mono text-sm sm:text-base tabular-nums tracking-tight sm:text-right sm:pt-0.5 ${
@@ -188,7 +187,6 @@ export function TimeTable() {
                   {item.time}
                 </time>
 
-                {/* 内容 */}
                 <div className="min-w-0 mt-1 sm:mt-0">
                   {item.kind === "part" ? (
                     <PartBlock item={item} />
@@ -252,9 +250,7 @@ function PartBlock({ item }: { item: SessionItem }) {
             >
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 sm:flex-nowrap sm:gap-4">
                 {detail.time && (
-                  <time
-                    className="shrink-0 font-mono text-xs tabular-nums text-text-primary/35 sm:w-12 sm:text-right"
-                  >
+                  <time className="shrink-0 font-mono text-xs tabular-nums text-text-primary/35 sm:w-12 sm:text-right">
                     {detail.time}
                   </time>
                 )}

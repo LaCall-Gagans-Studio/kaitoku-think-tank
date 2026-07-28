@@ -20,7 +20,7 @@ export function Manifesto() {
     <section
       ref={containerRef}
       id="manifesto"
-      className="relative min-h-screen flex flex-col items-center justify-center px-8 sm:px-16 py-32 sm:py-48 md:py-56 w-full overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center px-8 sm:px-16 py-24 sm:py-32 md:py-40 w-full overflow-hidden"
     >
       {/* 透かし文字 */}
       <motion.div

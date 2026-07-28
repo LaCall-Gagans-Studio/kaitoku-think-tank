@@ -10,8 +10,8 @@ export default function Home() {
     <div className="min-h-screen flex flex-col items-center justify-start w-full">
       <Hero />
       <Manifesto />
-      {/* <Speakers /> */}
       <TimeTable />
+      <Speakers />
       <CTA />
       <DataStats />
     </div>
