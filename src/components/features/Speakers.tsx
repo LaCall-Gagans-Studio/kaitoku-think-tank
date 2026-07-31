@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { TRANSITIONS } from "@/lib/animations";
 
@@ -12,6 +13,8 @@ interface Speaker {
   hidden?: boolean;
   /** 円形クロップ時の縦位置（顔が上寄りな写真向け） */
   imagePosition?: "top" | "center";
+  /** 例: ファシリテーター */
+  role?: string;
 }
 
 interface CommitteeGroup {
@@ -35,10 +38,9 @@ const speakersData: {
     {
       name: "湯崎 英彦",
       title: "前広島県知事",
-      image: "/speakers/yuzaki.webp",
-      imagePosition: "top",
+      image: "/speakers/yuzaki.png",
       profile:
-        "1990年東京大学法学部卒業。通商産業省（現・経済産業省）入省後、スタンフォード大学経営大学院でMBA（経営学修士）を取得。退官後の2000年にアッカ・ネットワークスを共同設立し、代表取締役副社長としてJASDAQ上場へと導く。その後、2009年から2025年まで4期16年にわたり広島県知事を務める。在任中は、全国初となる都道府県管理職への年俸制導入、知事としての育児休暇取得、G7広島サミットの誘致と各国首脳への平和発信、県立の中高一貫校「広島叡智学園」の開校など、産業、教育、平和行政の各分野で先進的な政策をプロデュース。現在、広島大学客員教授、県立広島大学大学院（HBMS）客員教授を務め、ソフトバンク社外取締役への就任が内定している。",
+        "1965年広島市生まれ。東京大学法学部卒業後、1990年に通商産業省（現・経済産業省）へ入省し、自動車通商政策や中小企業政策、原子力政策、通商政策などに携わる。1995年にはスタンフォード大学経営大学院（MBA）を修了し、シリコンバレーのベンチャーキャピタルへの出向を経て、2000年にIT企業アッカ・ネットワークスを創業。代表取締役副社長として同社をJASDAQ上場へ導いた。2009年に広島県知事に初当選し、以来4期16年にわたり県政を担う。2025年に任期満了をもって退任し、2026年からは慶應大学特任教授および県立広島大学大学院・叡啓大学・広島大学の客員教授を務めるとともに、ソフトバンク株式会社の社外取締役に就任している。",
     },
     {
       name: "森田 浩司",
@@ -61,19 +63,13 @@ const speakersData: {
             "2011年金沢大学医学部卒業。東京都立多摩総合医療センターで臨床経験を積んだ後、東京大学公衆衛生大学院で公衆衛生学修士（専門職）、医学博士を取得。現在は「人のつながりと健康」をテーマに、横浜市立大学で社会的孤立や孤独感に関わる研究、医学部生への公衆衛生教育に携わる。また、横浜市で実施した産官学連携の社会実装PJTの経験を元に、公衆衛生専門職を中心としたチームNext Public Health Labを立ち上げ、自治体・企業と専門職が共に健康づくりのエビデンス創出と社会実装を行う体制を目指して活動中。2024年11月より東京大学公共政策大学院特任助教。",
         },
         {
-          name: "押田 貴久",
-          title: "須崎市教育長",
-          image: "/speakers/speaker.png",
-          profile: "プロフィール準備中。",
-          hidden: true,
-        },
-        {
           name: "細田 眞由美",
           title:
             "前さいたま市教育長、兵庫教育大学客員教授、うらわ美術館館長、須崎市教育政策プロデューサー",
-          image: "/speakers/hosoda.webp",
+          image: "/speakers/hosoda.png",
+          imagePosition: "top",
           profile:
-            "1983年より埼玉県立高等学校で英語教諭を務めた後、埼玉県教育委員会指導主事、県立高校教頭、さいたま市教育委員会指導2課副参事を歴任。2013年からさいたま市立大宮北高等学校校長を務め、2017年から2023年までさいたま市教育委員会教育長として、文部科学省の「英語教育実施状況調査＞中学生の英語力（都道府県・指定都市別）」4回連続日本一を実現した。グローバル社会を生き抜く力を重視した「さいたまメソッド」を、著書『世界基準の英語力: 全国トップクラスのさいたま市の教育は何が違うのか』にて公開。現在は、うらわ美術館館長、兵庫教育大学客員教授、東京大学公共政策大学院講師、文部科学省学校DX戦略アドバイザー、須崎市教育政策プロデューサーなど多方面で活躍中。",
+            "1983年より埼玉県立高等学校で英語教諭を務めた後、埼玉県教育委員会指導主事、県立高校教頭、さいたま市教育委員会指導2課副参事を歴任。2013年からさいたま市立大宮北高等学校校長を務め、2017年から2023年までさいたま市教育委員会教育長として、文部科学省の「英語教育実施状況調査＞中学生の英語力（都道府県・指定都市別）」5回連続日本一を実現した。グローバル社会を生き抜く力を重視した「さいたまメソッド」を、著書『世界基準の英語力: 全国トップクラスのさいたま市の教育は何が違うのか』にて公開。現在は、うらわ美術館館長、兵庫教育大学客員教授、東京大学公共政策大学院講師、文部科学省学校DX戦略アドバイザー、須崎市教育政策プロデューサーなど多方面で活躍中。",
         },
         {
           name: "小林 伸行",
@@ -81,6 +77,12 @@ const speakersData: {
           image: "/speakers/kobayashi.png",
           profile:
             "筑波大を卒業後、地域情報誌と環境コンサルティングに携わるが、地域の疲弊と日本の将来を憂い、政治を志す。国会議員政策秘書試験に合格、衆議院議員公設秘書を経て横須賀市議を4期13年務める。コロナ禍の中、大学院にて広域連携を研究し、真鶴の課題に気付く。リコール成立を受け町政への挑戦を決意し、2023年の真鶴町長選で当選。地方政治のアカデミー賞と言われるマニフェスト大賞でも6年連続8回受賞し、新聞・ＴＶの取材も多数。",
+        },
+        {
+          name: "押田 貴久",
+          title: "須崎市教育長",
+          image: "/speakers/speaker.png",
+          profile: "プロフィール準備中。",
         },
       ],
     },
@@ -90,6 +92,7 @@ const speakersData: {
         {
           name: "村上 敬亮",
           title: "東京大学特任教授",
+          role: "ファシリテーター",
           image: "/speakers/murakami.webp",
           profile:
             "1990年東京大学教養学部卒業。通商産業省（現・経済産業省）入省後、ミシガン大学大学院で応用経済学修士号を取得。IT政策やクールジャパン戦略の立ち上げ、再生可能エネルギーの固定価格買取制度（FIT）設計、国際交渉などに従事。その後、内閣官房や内閣府にて地方創生・規制改革業務に携わり、中小企業庁経営支援部長を経て、2021年9月のデジタル庁発足と同時にデジタル統括官（国民向けサービスグループ長）に就任。コロナ禍の対応やマイナンバーカードの普及、防災DX、デジタル実装を通じた地域活性化を牽引。2025年7月に退官。現在、東京大学大学院公共政策学研究部特任教授、株式会社ドリームインキュベータ特別顧問、京都市政策推進パートナーなどを務め、メディアでの番組配信や著書を通じて日本経済再興や地域の仕事づくりに向けた提言を積極的に発信している。",
@@ -109,6 +112,7 @@ const speakersData: {
         {
           name: "村上 敬亮",
           title: "東京大学特任教授",
+          role: "ファシリテーター",
           image: "/speakers/murakami.webp",
           profile:
             "1990年東京大学教養学部卒業。通商産業省（現・経済産業省）入省後、ミシガン大学大学院で応用経済学修士号を取得。IT政策やクールジャパン戦略の立ち上げ、再生可能エネルギーの固定価格買取制度（FIT）設計、国際交渉などに従事。その後、内閣官房や内閣府にて地方創生・規制改革業務に携わり、中小企業庁経営支援部長を経て、2021年9月のデジタル庁発足と同時にデジタル統括官（国民向けサービスグループ長）に就任。コロナ禍の対応やマイナンバーカードの普及、防災DX、デジタル実装を通じた地域活性化を牽引。2025年7月に退官。現在、東京大学大学院公共政策学研究部特任教授、株式会社ドリームインキュベータ特別顧問、京都市政策推進パートナーなどを務め、メディアでの番組配信や著書を通じて日本経済再興や地域の仕事づくりに向けた提言を積極的に発信している。",
@@ -119,6 +123,34 @@ const speakersData: {
           image: "/speakers/himuro.png",
           profile:
             "昭和54年福岡県八女市生まれ。九州大学法学部卒業後、平成15年に広川町役場入庁。町民課、住民環境課、健康福祉課、政策調整課、企画課を経験。平成22年4月～平成25年3月、熊本大学大学院に在職通学。社会文化科学研究科博士前期課程修了（公共政策学修士）。令和4年12月に企画課地方創生担当係長（産業課を兼務）で広川町役場を退職。令和5年4月の広川町長選挙で初当選。現在１期目。就任から３年、町の未来を切り拓くために「地方創生」「人材育成」「こどもまんなか」などの政策に力を注ぎ、次の世代へと循環するまちづくりを進める。",
+        },
+        {
+          name: "小玉 祥平",
+          title: "三豊市教育センター長 / 一般社団法人放課後共創基金 事務局長",
+          image: "/speakers/kodama.png",
+          profile:
+            "東京都生まれ。2017年に(株)リクルートHD入社。2019年に香川県三豊市に移住、市教育委員会に転職。2021年より現職。2026年には石川県加賀市・高知県須崎市・PwCコンサルティングと「放課後共創基金」を共同設立。「純度の高い人を育てる魂の教育」を掲げ、探究学習・協調学習の学校伴走支援や部活動改革、教育DXなどを推進している。",
+        },
+        {
+          name: "田島 楓",
+          title: "暮らしの交通株式会社",
+          image: "/speakers/tajima.png",
+          profile:
+            "株式会社くらしノ 代表取締役。1998年東京都江戸川区生まれ。高校卒業以降、「学びの関係人口を増やす」をテーマに、複数のNPOに所属・個人でも活動。1,000人を超える高校生、15を超える全国の自治体・学校と連携、探究学習の普及や教員研修、また働き方改革の推進に向けたICTの学校導入推進等を行ってきた。2021年より香川県三豊市に移住をし、暮らしのなかの「寂しさ」を減らす、をテーマに社会関係資本増強に向けた事業を展開。オンデマンド交通事業などの移動支援事業を経て、現在は、学生向け地域分散型シェアハウス事業や、シニア向けの有償ボランティア事業を展開。",
+        },
+        {
+          name: "横山 裕一",
+          title: "瀬戸内ReFraming代表",
+          image: "/speakers/yokoyama.png",
+          profile:
+            "瀬戸内ReFarming株式会社 代表取締役。1998年生まれ、岐阜県出身。珈琲業界に携わる中で農業に興味を持ち、徳島県での研修を経て、2023年11月に香川県三豊市にて農業法人・瀬戸内ReFarming株式会社を設立。ブロッコリーを中心とした農業生産に従事。農業生産に加え、「ベーシックインフラ」サービスも展開。週3回、朝の3時間農業に携わることで、家賃・光熱費のかからない住まいと、地域での仕事やコミュニティを提供する仕組み。目指しているのは、「あなたの地域に関わる力と、暮らしを交換する仕組み」をつくること。年間50名の滞在者を受け入れ、農業を通じて地域に関わる若者を増やしてきた。",
+        },
+        {
+          name: "藤沢 久美",
+          title: "国際社会経済研究所理事長",
+          image: "/speakers/speaker.png",
+          profile:
+            "大阪市立大学（現：大阪公立大学）卒業後、国内外の投資運用会社勤務を経て、1995年に日本初の投資信託評価会社を起業。1999年、同社を世界的格付け会社スタンダード＆プアーズに売却後、2000年にシンクタンク・ソフィアバンクの設立に参画し、2013年から2022年3月まで代表を務める。政府各省の審議委員など公職に加え、メルカリなど上場企業の社外取締役やトヨタ自動車の取締役なども兼務。2022年4月より、NECグループの独立シンクタンク国際社会経済研究所の理事長として、テクノロジーの力で社会課題の解決を実現する事業戦略や市場戦略に責任を持つソートリーダーシップ活動に尽力している。",
         },
       ],
     },
@@ -305,7 +337,7 @@ export function Speakers() {
           </div>
         </div>
 
-        {/* 自由対談参加予定 */}
+        {/* 自由対談参加予定 — 一旦非表示
         <div className="mb-16 sm:mb-24">
           <p className="text-xs font-medium tracking-[0.4em] text-primary text-center mb-6 sm:mb-8">
             FREE DISCUSSION PARTICIPANTS
@@ -346,6 +378,7 @@ export function Speakers() {
             </span>
           </div>
         </div>
+        */}
 
         {/* Tier 3: 主催者 */}
         <div>
@@ -392,6 +425,26 @@ function SpeakerCard({
   const isLarge = size === "large";
   const objectPosition =
     speaker.imagePosition === "top" ? "object-top" : "object-center";
+  const [expanded, setExpanded] = useState(false);
+  const profileRef = useRef<HTMLParagraphElement>(null);
+  const [isClampable, setIsClampable] = useState(false);
+
+  useEffect(() => {
+    const el = profileRef.current;
+    if (!el || !speaker.profile) {
+      setIsClampable(false);
+      return;
+    }
+    // line-clamp-3 相当の高さより本文が長いときだけ畳み込みを有効化
+    const measure = () => {
+      const styles = getComputedStyle(el);
+      const lineHeight = parseFloat(styles.lineHeight) || 22;
+      setIsClampable(el.scrollHeight > lineHeight * 3.2);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [speaker.profile]);
 
   if (speaker.comingSoon) {
     return (
@@ -440,6 +493,11 @@ function SpeakerCard({
         </div>
 
         <div className="text-center flex flex-col flex-grow w-full">
+          {speaker.role && (
+            <span className="text-[11px] font-medium tracking-[0.2em] text-primary/70 mb-1">
+              {speaker.role}
+            </span>
+          )}
           <h3
             className={`font-normal text-text-primary tracking-widest mb-1 ${isLarge ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"}`}
           >
@@ -453,9 +511,27 @@ function SpeakerCard({
           {speaker.profile && (
             <>
               <div className="w-8 h-[1px] bg-primary/25 mx-auto mb-4" />
-              <p className="text-sm leading-relaxed text-text-primary/65 font-light">
-                {speaker.profile}
-              </p>
+              <button
+                type="button"
+                onClick={() => isClampable && setExpanded((v) => !v)}
+                className={`text-left w-full ${isClampable ? "cursor-pointer" : "cursor-default"}`}
+                aria-expanded={expanded}
+                disabled={!isClampable}
+              >
+                <p
+                  ref={profileRef}
+                  className={`text-sm leading-relaxed text-text-primary/65 font-light transition-[max-height] duration-300 ${
+                    expanded ? "" : "line-clamp-3"
+                  }`}
+                >
+                  {speaker.profile}
+                </p>
+                {isClampable && (
+                  <span className="mt-2 inline-block text-xs tracking-wider text-primary/80">
+                    {expanded ? "閉じる" : "続きを読む"}
+                  </span>
+                )}
+              </button>
             </>
           )}
         </div>

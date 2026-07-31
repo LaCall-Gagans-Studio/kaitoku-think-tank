@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CornerButton } from "../ui/CornerButton";
+import { CornerButton, ENTRY_FORM_URL } from "../ui/CornerButton";
 import { TRANSITIONS } from "@/lib/animations";
 
 export function Hero() {
@@ -101,9 +101,7 @@ export function Hero() {
 
         {/* CTA ボタン - 重なり防止のため下部に余白を確保 */}
         <motion.div variants={itemVariants} className="pb-32 sm:pb-40">
-          <CornerButton disabled className="opacity-80 cursor-not-allowed">
-            プレエントリー（近日公開予定）
-          </CornerButton>
+          <CornerButton href={ENTRY_FORM_URL}>プレエントリー</CornerButton>
         </motion.div>
       </motion.div>
 

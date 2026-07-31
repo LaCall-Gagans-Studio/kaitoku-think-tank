@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CornerButton } from "../ui/CornerButton";
+import { CornerButton, ENTRY_FORM_URL } from "../ui/CornerButton";
 import { TRANSITIONS, fadeUpVariants } from "@/lib/animations";
 
 export function CTA() {
@@ -41,9 +41,7 @@ export function CTA() {
         </p>
 
         <div className="z-10">
-          <CornerButton disabled className="opacity-60 cursor-not-allowed">
-            プレエントリー（近日公開予定）
-          </CornerButton>
+          <CornerButton href={ENTRY_FORM_URL}>プレエントリー</CornerButton>
         </div>
       </motion.div>
 
