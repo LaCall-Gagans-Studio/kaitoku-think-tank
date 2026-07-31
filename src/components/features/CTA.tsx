@@ -41,7 +41,7 @@ export function CTA() {
         </p>
 
         <div className="z-10">
-          <CornerButton href={ENTRY_FORM_URL}>プレエントリー</CornerButton>
+          <CornerButton href={ENTRY_FORM_URL}>エントリー</CornerButton>
         </div>
       </motion.div>
 

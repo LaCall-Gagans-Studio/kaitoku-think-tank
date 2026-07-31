@@ -101,7 +101,7 @@ export function Hero() {
 
         {/* CTA ボタン - 重なり防止のため下部に余白を確保 */}
         <motion.div variants={itemVariants} className="pb-32 sm:pb-40">
-          <CornerButton href={ENTRY_FORM_URL}>プレエントリー</CornerButton>
+          <CornerButton href={ENTRY_FORM_URL}>エントリー</CornerButton>
         </motion.div>
       </motion.div>
 
