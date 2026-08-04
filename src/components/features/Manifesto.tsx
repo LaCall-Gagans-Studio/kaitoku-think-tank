@@ -74,7 +74,7 @@ export function Manifesto() {
             <div className="w-12 h-[1px] bg-primary/30 mt-4" />
           </div>
           <h3 className="text-[clamp(1.875rem,5vw,3.5rem)] font-light text-text-primary tracking-wide leading-snug mb-8 sm:mb-10">
-            毎年の<span className="text-accent font-normal">補助金頼み</span>
+            毎年の<span className="text-accent font-normal">リソース不足</span>
             からの脱却。
           </h3>
           <div className="flex flex-col gap-6 text-[clamp(1rem,2.2vw,1.25rem)] leading-loose font-light text-text-primary/70 max-w-3xl">
