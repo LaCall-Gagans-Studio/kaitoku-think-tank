@@ -82,6 +82,7 @@ const speakersData: {
           name: "押田 貴久",
           title: "須崎市教育長",
           image: "/speakers/speaker.png",
+          hidden: true,
           profile: "プロフィール準備中。",
         },
       ],
