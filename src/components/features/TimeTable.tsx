@@ -18,6 +18,7 @@ interface SessionItem {
   theme?: string;
   subtitle?: string;
   details?: SessionDetail[];
+  hidden?: boolean;
 }
 
 const timetableData: SessionItem[] = [
@@ -134,7 +135,7 @@ const timetableData: SessionItem[] = [
     subtitle: "中山 昌生・松原 直輝（後援団体の紹介／懐徳総合研究所の1年）",
   },
   { time: "17:55", title: "閉会挨拶", kind: "break" },
-  { time: "18:00", title: "交歓会", kind: "break" },
+  { time: "18:00", title: "交歓会", kind: "break", hidden: true },
 ];
 
 export function TimeTable() {
@@ -176,7 +177,6 @@ export function TimeTable() {
               </dd>
               <dd className="mt-3 flex flex-col gap-1.5 text-base font-light text-text-primary/80">
                 <span>オンライン配信あり</span>
-                <span>18:00〜 交歓会（同会場）</span>
               </dd>
             </div>
           </dl>
@@ -198,7 +198,9 @@ export function TimeTable() {
         </motion.div>
 
         <ol className="relative">
-          {timetableData.map((item, index) => (
+          {timetableData
+            .filter((item) => !item.hidden)
+            .map((item, index) => (
             <motion.li
               key={index}
               initial={{ opacity: 0, y: 16 }}
