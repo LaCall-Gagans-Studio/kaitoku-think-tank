@@ -100,8 +100,11 @@ export function Hero() {
         </motion.p>
 
         {/* CTA ボタン - 重なり防止のため下部に余白を確保 */}
-        <motion.div variants={itemVariants} className="pb-32 sm:pb-40">
+        <motion.div variants={itemVariants} className="flex flex-col items-center pb-32 sm:pb-40">
           <CornerButton href={ENTRY_FORM_URL}>エントリー</CornerButton>
+          <p className="mt-4 text-xs sm:text-sm font-light tracking-wider text-text-primary/55">
+            エントリー締切：2026年9月13日（日）
+          </p>
         </motion.div>
       </motion.div>
 

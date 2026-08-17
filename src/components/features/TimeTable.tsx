@@ -51,7 +51,7 @@ const timetableData: SessionItem[] = [
       {
         time: "",
         text: "医療人材（新潟県津南町）",
-        desc: "「経営を担いたい医師を集めるという戦略」",
+        desc: "「多様な挑戦機会で医療人材をひきつける」",
         speakers: "千手 孝太郎（津南町立病院医師）",
         sub: true,
       },
