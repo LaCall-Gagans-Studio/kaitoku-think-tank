@@ -103,7 +103,7 @@ export function Hero() {
         <motion.div variants={itemVariants} className="flex flex-col items-center pb-32 sm:pb-40">
           <CornerButton href={ENTRY_FORM_URL}>エントリー</CornerButton>
           <p className="mt-4 text-xs sm:text-sm font-light tracking-wider text-text-primary/55">
-            エントリー締切：2026年9月13日（日）
+            エントリー締切：2026年9月18日（金）
           </p>
         </motion.div>
       </motion.div>
