@@ -67,9 +67,9 @@ export function CTA() {
                 東京大学鈴木寛研究室
               </p>
               <p className="text-base sm:text-lg font-light text-text-primary/70 leading-snug">
-                東京大学公共政策大学院
+                コラボレイティブ・ガバナンス研究社会連携講座
                 <br className="sm:hidden" />
-                社会連携講座
+                （東京大学公共政策大学院・PwCコンサルティング合同会社）
               </p>
             </div>
           </div>
@@ -81,7 +81,6 @@ export function CTA() {
             </h3>
             <div className="grid grid-cols-2 gap-x-6 gap-y-3">
               {[
-                "コラボレイティブ・ガバナンス社会連携講座", 
                 "懐徳会",
                 "株式会社懐徳総合研究所",
                 "株式会社パブリックテクノロジーズ",
