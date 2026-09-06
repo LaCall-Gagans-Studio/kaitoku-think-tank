@@ -66,7 +66,7 @@ const timetableData: SessionItem[] = [
         time: "",
         text: "地域活性化人材（西会津町・萩市）",
         desc: "「未来型”結”のポテンシャル」",
-        speakers: "野崎涼（PwCコンサルティング合同会社）",
+        speakers: "野﨑 涼（PwCコンサルティング合同会社）",
         sub: true,
       },
       {
@@ -104,7 +104,7 @@ const timetableData: SessionItem[] = [
       {
         time: "",
         text: "放課後共創基金",
-        speakers: "小玉 祥平（三豊市教育センター長） × 篠崎亮（PwCコンサルティング合同会社）",
+        speakers: "小玉 祥平（三豊市教育センター長） × 篠崎 亮（PwCコンサルティング合同会社）",
         sub: true,
       },
       {
