@@ -64,9 +64,10 @@ const timetableData: SessionItem[] = [
       },
       {
         time: "",
-        text: "地域活性化人材（西会津町・萩市）",
+        text: "地域活性化人材（西会津町）",
         desc: "「未来型”結”のポテンシャル」",
-        speakers: "野﨑 涼（PwCコンサルティング合同会社）",
+        speakers:
+          "野﨑 涼（PwCコンサルティング合同会社） × 長橋 幸宏（株式会社LONGBRIDGE代表／石高プロジェクト運営事務局）",
         sub: true,
       },
       {
