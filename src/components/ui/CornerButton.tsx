@@ -2,8 +2,6 @@
 
 import React from "react";
 
-export const ENTRY_FORM_URL = "https://forms.gle/uoYvgH9VHR37gSabA";
-
 type CornerButtonProps = {
   children: React.ReactNode;
   className?: string;

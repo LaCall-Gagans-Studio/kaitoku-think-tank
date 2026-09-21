@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CornerButton, ENTRY_FORM_URL } from "../ui/CornerButton";
 import { TRANSITIONS, fadeUpVariants } from "@/lib/animations";
 
 export function CTA() {
@@ -41,9 +40,8 @@ export function CTA() {
         </p>
 
         <div className="z-10 flex flex-col items-center">
-          <CornerButton href={ENTRY_FORM_URL}>エントリー</CornerButton>
-          <p className="mt-4 text-xs sm:text-sm font-light tracking-wider text-text-primary/55">
-            エントリー締切：2026年9月18日（金）
+          <p className="text-base sm:text-lg font-medium tracking-wider text-text-primary/70">
+            予約は締め切りました
           </p>
         </div>
       </motion.div>

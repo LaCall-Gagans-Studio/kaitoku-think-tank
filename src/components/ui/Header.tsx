@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TRANSITIONS } from "@/lib/animations";
 import { Menu, X } from "lucide-react";
-import { ENTRY_FORM_URL } from "./CornerButton";
 
 const navLinks = [
   { href: "#manifesto", label: "イベントについて" },
@@ -87,15 +86,10 @@ export function Header() {
             ))}
           </nav>
 
-          {/* PC CTA ボタン */}
-          <a
-            href={ENTRY_FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:inline-flex items-center justify-center px-5 py-2.5 text-xs font-medium tracking-widest text-primary border border-primary/40 rounded-full hover:bg-primary/5 transition-colors"
-          >
-            エントリー
-          </a>
+          {/* PC CTA - 予約締切済み */}
+          <span className="hidden md:inline-flex items-center justify-center px-5 py-2.5 text-xs font-medium tracking-widest text-text-primary/50 border border-text-primary/20 rounded-full">
+            予約は締め切りました
+          </span>
 
           {/* スマホ ハンバーガーボタン */}
           <button
@@ -160,18 +154,14 @@ export function Header() {
               ))}
             </nav>
 
-            <motion.a
-              href={ENTRY_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              onClick={() => setMenuOpen(false)}
-              className="px-8 py-4 text-sm font-medium tracking-widest text-primary border border-primary/40 rounded-full text-center hover:bg-primary/5 transition-colors"
+              className="px-8 py-4 text-sm font-medium tracking-widest text-text-primary/50 border border-text-primary/20 rounded-full text-center"
             >
-              エントリー
-            </motion.a>
+              予約は締め切りました
+            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>
