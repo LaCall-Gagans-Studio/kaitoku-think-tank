@@ -43,6 +43,9 @@ export function CTA() {
           <p className="text-base sm:text-lg font-medium tracking-wider text-text-primary/70">
             予約は締め切りました
           </p>
+          <p className="mt-4 text-xs sm:text-sm font-light tracking-wider text-text-primary/55">
+            ※ 席数の都合上、オンラインでのご案内となる場合があります
+          </p>
         </div>
       </motion.div>
 
