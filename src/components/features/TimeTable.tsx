@@ -116,7 +116,7 @@ const timetableData: SessionItem[] = [
       },
       {
         time: "",
-        text: "Basic Infra Villege",
+        text: "Basic Infra Village",
         speakers: "横山 裕一（瀬戸内ReFraming代表）",
         sub: true,
       },
